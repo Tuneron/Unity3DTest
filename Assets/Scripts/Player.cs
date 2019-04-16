@@ -4,16 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Projectile projectile;
+    public Projectile projectile;
 
     public float Vision = 20f;  // Радиус обзора персонажа
     public float Speed = 0.07f; // Скорость перемещения персонажа
-
-    // Use this for initialization
-    void Start()
-    {
-        projectile = FindObjectOfType <Projectile>();
-    }
 
     // Update is called once per frame
     void Update()
@@ -34,6 +28,6 @@ public class Player : MonoBehaviour
     public void Shot(GameObject enemy)
     {
         Debug.Log(string.Format("Was shot for the {0}\n{1}", enemy.name, System.DateTime.Now.ToString("h:mm:ss tt")));
-        projectile.Launch(enemy.transform.position);
+        Instantiate(projectile, transform.position, Quaternion.identity).Launch(enemy.transform.position);
     }
 }
